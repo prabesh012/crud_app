@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class=" navbar-brand " href="#">ReaP</a>
+    </nav>
+
+    <div class="container">
+        <form action="/papers/requested" method="POST">
+            <div class="form-group mt-3">
+                <label>Paper Title</label>
+                <input class="form-control" name="title">
+                <label>Author</label>
+                <input class="form-control" name="author">
+                <label>Year of Publication</label>
+                <input class="form-control" name="date_of_publication">
+                <label>Journal/Conference</label>
+                <input class="form-control" name="journal"> {% if add == 'True' %}
+                <label>Upload File (PDF)</label>
+                <input class="form-control" name="file" type="file"> {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary" name="Submit Button" value="Submit">Submit</button>
+            <button href="{{url_for('disp_papers')}}" class="btn btn-primary" name="Submit Button" value="Back">Back</button>
+        </form>
+
+
+    </div>
+
+</body>
+
+</html>

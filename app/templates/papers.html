@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>The page is of index page</h1>
+    <h1>The page is of index page {{datas[0]}}</h1>
+    {%for i in range(0, 2 )%}
+
+    <li style="color: red;">{{datas[i]}} </li>
+
+    {%endfor%}
 </body>
 </html>

@@ -1,0 +1,9 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.nav-pd {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}

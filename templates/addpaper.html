@@ -1,0 +1,25 @@
+{% extends "layout.html" %} 
+{% block title %} 
+    Add a paper 
+{% endblock %} 
+{% block content %}
+    <form action={{ url_for('create') }}>
+    <div class="form-group">
+        <label for="paperTitle">Title</label>
+        <input type="text" class="form-control" id="paperTitle" name="title" placeholder="Enter paper title" autocomplete="off"/>
+    </div>
+    <div class="form-group">
+        <label for="paperAuthor">Author</label>
+        <input type="text" class="form-control" id="paperAuthor" name="author" placeholder="Enter paper Author" autocomplete="off" />
+    </div>
+    <div class="form-group">
+        <label for="paperDate">Date</label>
+        <input type="date" class="form-control" id="paperDate" name="publish_date" placeholder="Enter paper publish date" autocomplete="off" />
+    </div>
+    <div class="form-group">
+        <label for="paperCategory">Category</label>
+        <input type="text" class="form-control" id="paperCategory" name="category" placeholder="Enter paper category" autocomplete="off" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

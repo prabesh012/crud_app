@@ -10,6 +10,7 @@ app = Flask(__name__)
 from flask import render_template, request, redirect, send_file
 
 import sqlite3
+import time
 
 UPLOAD_FOLDER = './files'
 ALLOWED_EXTENSIONS = {'pdf'}
@@ -17,7 +18,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-
     conn = sqlite3.connect('fuse.db')
     c = conn.cursor()
     
@@ -36,9 +36,11 @@ def index():
 @app.route("/paper", methods=["POST"])
 def paper():
 
-     if request.method == "POST":     
+     if request.method == "POST": 
 
         file = request.files['papers']
+
+        # return(request.files['papers'].filename)
 
         # if file.filename == '':
         #     flash('No selected file')
@@ -48,6 +50,7 @@ def paper():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
 
             #Saving data to the database
             field = request.files['papers'].filename            
@@ -74,11 +77,14 @@ def showfile(data):
     data_path = (os.path.join(app.config['UPLOAD_FOLDER'], data))
     sliced_path = data_path[2:]
 
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    final = 'files:' +os.path.join(basedir,'files', data)
+
     #to download the file
-    return send_file(sliced_path, as_attachment=True)
+    return send_file(final, as_attachment=True)
 
     #to view the file
-    # return render_template("showpdf.html",path=sliced_path)
+    # return render_template("showpdf.html",path=final)
 
 
 if __name__ == '__main__':

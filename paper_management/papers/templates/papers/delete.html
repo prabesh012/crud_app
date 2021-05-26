@@ -9,7 +9,7 @@
       <li>Published Date: {{paper.publish_date}}</li>
       <li>Category: {{paper.category}}</li>
     </ul>
-    <form action="{{ url_for('delete',id=form.id) }}" method="POST">
+    <form action="{{ url_for('papers.delete',id=form.id) }}" method="POST">
       {{form.hidden_tag()}} {{form.submit(class="btn btn-danger mt-3")}}
       <a href="{{ url_for('index') }}" class="btn btn-success mt-3">Cancel</a>
     </form>

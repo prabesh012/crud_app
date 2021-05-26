@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block title %} Update a paper {% endblock %} {% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h2>Please Update the information!</h2>
+    <form action="{{ url_for('papers.update',id=form.id)}}" method="POST">
+      {{form.hidden_tag()}} {{form.title.label}}
+      {{form.title(class="form-control",value=paper.title)}}
+      {{form.author.label}}
+      {{form.author(class="form-control",value=paper.author)}}
+      {{form.publish_date.label}}
+      {{form.publish_date(class="form-control",type="date",value=paper.publish_date)}}
+      {{form.category.label}}
+      {{form.category(class="form-control",value=paper.category)}} 
+      {{form.submit(class="btn btn-warning mt-3")}}
+      <a href="{{ url_for('index') }}" class="btn btn-danger mt-3">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,25 +1,14 @@
-{% extends "layout.html" %} 
-{% block title %} 
-    Add a paper 
-{% endblock %} 
-{% block content %}
-    <form action={{ url_for('create') }}>
-    <div class="form-group">
-        <label for="paperTitle">Title</label>
-        <input type="text" class="form-control" id="paperTitle" name="title" placeholder="Enter paper title" autocomplete="off"/>
-    </div>
-    <div class="form-group">
-        <label for="paperAuthor">Author</label>
-        <input type="text" class="form-control" id="paperAuthor" name="author" placeholder="Enter paper Author" autocomplete="off" />
-    </div>
-    <div class="form-group">
-        <label for="paperDate">Date</label>
-        <input type="date" class="form-control" id="paperDate" name="publish_date" placeholder="Enter paper publish date" autocomplete="off" />
-    </div>
-    <div class="form-group">
-        <label for="paperCategory">Category</label>
-        <input type="text" class="form-control" id="paperCategory" name="category" placeholder="Enter paper category" autocomplete="off" />
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+{% extends "layout.html" %} {% block title %} Add a paper {% endblock %} {% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <form method="POST">
+      {{form.hidden_tag()}} {{form.title.label}}{{form.title(class="form-control")}}
+      {{form.author.label}}{{form.author(class="form-control")}}
+      {{form.publish_date.label}}{{form.publish_date(class="form-control",type="date")}}
+      {{form.category.label}}{{form.category(class="form-control")}} {{form.submit(class="btn
+      btn-primary mt-3")}}
+      <a href="{{url_for('index')}}" class="btn btn-danger mt-3">Cancel</a>
     </form>
+  </div>
+</div>
 {% endblock %}

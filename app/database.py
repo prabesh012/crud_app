@@ -37,11 +37,11 @@ fields  = [
 ]
 # c.executemany("INSERT INTO fields VALUES (?)", fields)
 
-c.execute("INSERT INTO fields VALUES ('Artifical Intelligence')")
-c.execute("INSERT INTO fields VALUES ('Machine Learning')")
-c.execute("INSERT INTO fields VALUES ('Web Development')")
-c.execute("INSERT INTO fields VALUES ('Deep Learning')")
-c.execute("INSERT INTO fields VALUES ('Networking')")
+# c.execute("INSERT INTO fields VALUES ('Artifical Intelligence')")
+# c.execute("INSERT INTO fields VALUES ('Machine Learning')")
+# c.execute("INSERT INTO fields VALUES ('Web Development')")
+# c.execute("INSERT INTO fields VALUES ('Deep Learning')")
+# c.execute("INSERT INTO fields VALUES ('Networking')")
 
 
 

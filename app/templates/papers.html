@@ -7,11 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-   {{datas}}
+
+    <form action="{{ url_for('paper') }}" method="POST"
+    enctype = "multipart/form-data">
+        <input type = "file" name = "papers">
+        <input type = "submit"/>
+    </form>
+    <hr>
+
     {%for data in datas%}
-
-    <li style="color: red;">{{data}} </li>
-
+    <a href="{{ url_for('.showfile', data =data) }}" target="_blank">{{data}}</a>
+    <br>
     {%endfor%}
+
 </body>
 </html>

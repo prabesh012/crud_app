@@ -1,9 +1,10 @@
 from flask import Blueprint, redirect, render_template, url_for, abort, flash,request, send_file
 from flask_login import current_user,login_required
-from paper_management import db,app
-from paper_management.models import Paper
+from paper_management import db,app,mail
+from paper_management.models import Paper, User
 from paper_management.papers.forms import AddForm, DelForm, UpdateForm
 from werkzeug.utils import secure_filename
+from flask_mail import Message
 import os
 papers_blueprints = Blueprint('papers',__name__,template_folder='templates/papers')
 
@@ -79,5 +80,14 @@ def delete(id):
 @login_required
 def download(id):
     paper = Paper.query.get_or_404(id)
+    user_id  = paper.user_id
+    user = User.query.get_or_404(user_id)
+    user_email = user.email
     file_name = paper.research_file.split("/")
-    return send_file(paper.research_file, as_attachment=True,download_name=file_name[-1])
+    message = Message("Here is your file",recipients=[user_email])
+    with app.open_resource(paper.research_file) as pdf:
+        message.attach(file_name[-1], "application/pdf", pdf.read())
+        mail.send(message)
+        flash("Check your mail")
+    return redirect(url_for('index'))
+    # return send_file(paper.research_file, as_attachment=True,download_name=file_name[-1])

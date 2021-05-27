@@ -22,7 +22,7 @@ class Paper(db.Model):
         self.user_id = user_id
 
     def __repr__(self):
-        return f"Paper {self.title} was created by {self.author} on {self.publish_date}"
+        return f"{self.title}"
 class User(db.Model,UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key=True)

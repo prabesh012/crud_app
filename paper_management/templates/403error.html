@@ -1,9 +1,9 @@
 {% extends "layoutmain.html" %}
-{% block title %} Error 404 {% endblock %} 
+{% block title %} Error 403{% endblock %} 
 {% block body %}
 <div class="jumbotron">
   <div class="container">
-    <h2>Sorry, Please check the URL once.</h2>
+    <h2>403, Forbidden Access </h2>
     <a href="{{ url_for('index') }}" class="btn btn-primary">Home</a>
   </div>
 </div>

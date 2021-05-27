@@ -1,0 +1,17 @@
+{% extends "layout.html" %} 
+{% block title %} 
+    Login 
+{% endblock %} 
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <form method="POST">
+      {{form.hidden_tag()}} 
+      {{form.email.label}}{{form.email(class="form-control")}}
+      {{form.password.label}}{{form.password(class="form-control")}}
+      {{form.submit(class="btn btn-primary mt-3")}}
+      <a href="{{url_for('index')}}" class="btn btn-danger mt-3">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

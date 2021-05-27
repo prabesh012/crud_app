@@ -3,12 +3,18 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-
-login_manager = LoginManager()
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecretkey'
+from werkzeug.utils import secure_filename
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(basedir,'media/uploads')
+
+login_manager = LoginManager()
+
+app = Flask(__name__)
+
+app.config['SECRET_KEY'] = 'mysecretkey'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'database.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

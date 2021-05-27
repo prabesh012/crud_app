@@ -260,3 +260,4 @@ pip-selfcheck.json
 .vscode
 *.sqlite
 migrations/
+media/

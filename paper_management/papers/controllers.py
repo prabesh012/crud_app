@@ -1,9 +1,10 @@
-from flask import Blueprint, redirect, render_template, url_for, abort, flash
+from flask import Blueprint, redirect, render_template, url_for, abort, flash,request, send_file
 from flask_login import current_user,login_required
-from paper_management import db
+from paper_management import db,app
 from paper_management.models import Paper
 from paper_management.papers.forms import AddForm, DelForm, UpdateForm
-
+from werkzeug.utils import secure_filename
+import os
 papers_blueprints = Blueprint('papers',__name__,template_folder='templates/papers')
 
 # CREATE
@@ -12,10 +13,15 @@ papers_blueprints = Blueprint('papers',__name__,template_folder='templates/paper
 def addpaper():
     form = AddForm()
     if form.validate_on_submit():
+        research_pdf =  request.files['research_file']
+        filename = secure_filename(research_pdf.filename)
+        file_location = os.path.join(app.config['UPLOAD_FOLDER'],filename)
+        research_pdf.save(file_location)
         paper = Paper(title=form.title.data,
                     author=form.author.data,
                     publish_date=form.publish_date.data,
                     category=form.category.data,
+                    research_file=file_location,
                     user_id=current_user.id)
         db.session.add(paper)   
         db.session.commit()
@@ -39,10 +45,15 @@ def update(id):
     if paper.user_id != current_user.id:
         abort(403)
     if form.validate_on_submit():
+        research_pdf =  request.files['research_file']
+        filename = secure_filename(research_pdf.filename)
+        file_location = os.path.join(app.config['UPLOAD_FOLDER'],filename)
+        research_pdf.save(file_location)
         paper.title = form.title.data
         paper.author = form.author.data
         paper.publish_date = form.publish_date.data
         paper.category = form.category.data
+        paper.research_file = file_location
         db.session.commit()
         flash('Paper Updated!')
         return redirect(url_for('index'))
@@ -63,3 +74,10 @@ def delete(id):
         flash('Paper Deleted!')
         return redirect(url_for('index'))
     return render_template('delete.html',form=form,paper=paper)
+
+@papers_blueprints.route('/download/<int:id>',methods=['GET'])
+@login_required
+def download(id):
+    paper = Paper.query.get_or_404(id)
+    file_name = paper.research_file.split("/")
+    return send_file(paper.research_file, as_attachment=True,download_name=file_name[-1])

@@ -31,7 +31,9 @@ content %}
           ><i class="fa fa-trash"></i
         ></a>
         {% endif %}
-        <a href="{{ url_for('index') }}" class="btn btn-info"><i class="fa fa-download"></i></a>
+        <a href="{{ url_for('papers.download',id=paper.id) }}" class="btn btn-info"
+          ><i class="fa fa-download"></i
+        ></a>
       </td>
       {% endif %}
     </tr>

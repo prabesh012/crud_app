@@ -10,13 +10,15 @@ class Paper(db.Model):
     author = db.Column(db.Text)
     publish_date = db.Column(db.Date)
     category = db.Column(db.Text)
+    research_file = db.Column(db.Text)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id',ondelete='CASCADE'),nullable=False)
 
-    def __init__(self,title,author,publish_date,category,user_id):
+    def __init__(self,title,author,publish_date,category,research_file,user_id):
         self.title = title
         self.author = author
         self.publish_date = publish_date
         self.category = category
+        self.research_file = research_file
         self.user_id = user_id
 
     def __repr__(self):

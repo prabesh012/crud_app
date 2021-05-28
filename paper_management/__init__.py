@@ -33,7 +33,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 configurations = dotenv_values(".env")
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
-app.config["MAIL_DEFAULT_SENDER"] = None
+app.config["MAIL_DEFAULT_SENDER"] = configurations['MAIL_USERNAME']
 app.config["MAIL_USERNAME"] = configurations['MAIL_USERNAME']
 app.config["MAIL_PASSWORD"] = configurations['MAIL_PASSWORD']
 app.config["MAIL_PORT"] = 465

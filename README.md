@@ -32,10 +32,8 @@ To export the flask app and integrate db with it
 1. export FLASK_APP=application.py
 2. export FLASK_ENV=development
 3. export FLASK_DEBUG=1
-
-Try to run flask db init, if you get an error, I suggest to install the sqlalchemy using sudo 
 4. sudo apt-get install python3-sqlalchemy
-5. python3 -m flask db init
+5. python3 -m flask db init (Try to run flask db init, if you get an error, I suggest to install the sqlalchemy using sudo)
 6. python3 -m flask db migrate -m "Database Created"
 7. python3 -m flask db upgrade
 

@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block title %} Detail Paper Information {% endblock %} {% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h3>Paper Information</h3>
+    <ul>
+      <li>Title: {{paper.title}}</li>
+      <li>Author: {{paper.author}}</li>
+      <li>Published Date: {{paper.publish_date}}</li>
+      <li>Category: {{paper.category}}</li>
+    </ul>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Go Back</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block title %} Add a paper {% endblock %} {% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <form method="POST"enctype=multipart/form-data >
+      {{form.hidden_tag()}} {{form.title.label}}{{form.title(class="form-control")}}
+      {{form.author.label}}{{form.author(class="form-control")}}
+      {{form.publish_date.label}}{{form.publish_date(class="form-control",type="date")}}
+      {{form.category.label}}{{form.category(class="form-control")}} 
+      {{form.research_file.label}}{{form.research_file(class="form-control")}}
+      {% if form.research_file.errors %}
+      <ul>
+      {% for error in form.research_file.errors %}
+        <li class="text-danger">{{error}}</li> 
+      {% endfor %}
+      </ul>
+      {% endif %}
+      {{form.submit(class="btn btn-primary mt-3")}}
+      <a href="{{url_for('index')}}" class="btn btn-danger mt-3">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

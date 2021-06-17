@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class=" navbar-brand " href="#">ToDo</a>
+    </nav>
+
+    <div class="container">
+        <form action="/users/added" method="POST">
+            <div class="form-group mt-3">
+                <label>Full Name</label>
+                <input class="form-control" name="name">
+                <label>Email ID</label>
+                <input class="form-control" name="email">
+            </div>
+            <button type="submit" class="btn btn-primary" name="Submit Button" value="Add">Add</button>
+            <button href="{{url_for('disp_users')}}" class="btn btn-primary" name="Submit Button" value="Back">Back</button>
+        </form>
+
+
+    </div>
+
+</body>
+
+</html>
